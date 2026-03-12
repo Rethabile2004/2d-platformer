@@ -1,0 +1,59 @@
+# Unity generated folders
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+
+# Unity crash reports
+sysinfo.info
+crashlytics-build.properties
+
+# Visual Studio / Rider
+.vs/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains
+.idea/
+*.iml
+
+# Asset meta files (keep these!)
+# *.meta  ← do NOT ignore .meta files in Unity
+
+# Packages (manifest is kept, but resolved packages are not)
+Packages/packages-lock.json
+
+# Build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.app
