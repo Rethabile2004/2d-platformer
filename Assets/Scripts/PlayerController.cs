@@ -1,8 +1,10 @@
+using System.Collections;
 using Unity.Burst;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int health = 100;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     public Transform groundCheck;
@@ -13,11 +15,14 @@ public class PlayerController : MonoBehaviour
     private int extraJumps;
     private Rigidbody2D rb;
     private bool isGrounded;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         extraJumps = extraJumpValue;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -72,5 +77,28 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Damage"))
+        {
+            health -= 25;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            StartCoroutine(BlinkRed());
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+    private IEnumerator BlinkRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
+    }
+    private void Die()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
 }
